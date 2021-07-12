@@ -21,9 +21,11 @@ Jul 8th
 Jul 9th
 <<<<<<< HEAD
 
-Jul 10th -- X
+Jul 10th -- 취소선 몬해??
 
 Jul 11th
 =======
 씽씽 아무것도 안적을래?!
 >>>>>>> 837c72ff7e24adfa2b087931f4fbc5b7f4e6059a
+
+Jul 12th - 적을게 없는걸,,,
