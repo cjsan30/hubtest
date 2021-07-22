@@ -1,0 +1,29 @@
+CREATE TABLE MEMBERS
+(
+    MB_ID       VARCHAR2(50)        PRIMARY KEY,
+    MB_EMAIL    VARCHAR2(50)        NULL,
+    MB_PASS     VARCHAR2(50)        NOT NULL,
+    MB_REGION   VARCHAR2(10)        NOT NULL
+);
+
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeonggi031', null, 'aleoi9j4f', '경기');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gangwon033', null, '9idlv8dkx', '강원');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('incheon032', null, 'idkc0l32g', '인천');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('seoul02', null, '03kdic20d', '서울');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chungbuk043', null, '8cos0dc2i', '충북');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('sejong044', null, '02cksle9v', '세종');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daejeon042', null, 'codpslc4c', '대전');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongbuk054', null, '9odlexkc2', '경북');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chunnam041', null, '0cpd3kdcs', '충남');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonbuk063', null, '5lck95kxs', '전북');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daegu053', null, '43olskci2', '대구');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongnam055', null, 'esls0d4kc', '경남');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('ulsan052', null, 'cpdels92l', '울산');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gwangju062', null, 'xodlci20c', '광주');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonnam061', null, 'bubnjd03l', '전남');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('busan051', null, '4o3lk9fkc', '부산');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeju064', null, 'ckslop2oe', '제주');
+
+SELECT * FROM MEMBERS;
+
+-- COMMIT;

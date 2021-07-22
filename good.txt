@@ -57,3 +57,6 @@ Jul 20th
 >>>>>>> 453da70d348b227c6392a455f96df8a5e714f380
 
 Jul 21th
+
+Jul 22th
+"covid-19 members table create and insert"
