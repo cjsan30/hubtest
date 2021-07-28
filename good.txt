@@ -69,3 +69,6 @@ Jul 26th
 
 Jul 27th
 "It's gonna be okay."
+
+Jul 28th
+"commit 이 외 않되?"
