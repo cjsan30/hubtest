@@ -78,3 +78,6 @@ Jul 29th
 "sign in page html 완료"
 "캡쳐해서 파일에 사진으로 넣어놯고"
 "계획 세워서 notion 입력해놨음!!"
+
+Jul 30th
+"Friday!!"
