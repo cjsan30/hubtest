@@ -224,14 +224,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control">
+                                        <input type="text" name="email" class="form-control" placeholder="Id">
                                         <span class="form-bar"></span>
-                                        <label class="float-label">Id</label>
+                                        <label class="float-label"></label>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="password" name="password" class="form-control">
+                                        <input type="password" name="password" class="form-control" placeholder="Password">
                                         <span class="form-bar"></span>
-                                        <label class="float-label">Password</label>
+                                        <label class="float-label"></label>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">

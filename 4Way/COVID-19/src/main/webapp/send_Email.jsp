@@ -222,9 +222,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control">
+                                        <input type="text" name="email" class="form-control" placeholder="Your Email Address">
                                         <span class="form-bar"></span>
-                                        <label class="float-label">Your Email Address</label>
+                                        <label class="float-label"></label>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">
