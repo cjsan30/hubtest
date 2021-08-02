@@ -1,3 +1,12 @@
+8/2 JE Notice!
+
+- 각 페이지 html 캡처 본 로그인 페이지에서 확인 가능
+- 각 페이지 양식 모두 통일함
+- 각 페이지 title, 각 box main 이름, button 이름, id, password, e-mail 등 각 명 설정 재확인
+- 각 페이지 파일 위치 재확인
+- Find Password 클릭 시 담당자 이메일로 랜덤 비밀번호가 발송되는지 ..?
+
+
 7월 1일 
 <<<<<<< HEAD
 Jul 2nd
