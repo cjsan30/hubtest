@@ -13,13 +13,13 @@
 			color: #455a64;
 			font-family: "Open Sans", sans-serif;
 			background-attachment: fixed;
-			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(255, 255, 255, 0.9) 0%);
+			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.9) 0%);
 		}
 		.card .card-block {
 		    padding: 20px;
 		}
 		.login-block {
-			margin: 30px auto;
+			margin: 18% auto;
 		}
 		.card {
 		    position: relative;
