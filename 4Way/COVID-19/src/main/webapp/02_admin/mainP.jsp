@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	
+	session.setAttribute("userId", "busan051");
+%>
+<%
+	String userId = (String)session.getAttribute("userId");
+	if(userId == null){
+		response.sendRedirect("./admin_sign_in.jsp");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +15,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="/COVID-19/js/jquery-3.6.0.js"></script>
 
 <style>
 	body{
@@ -112,11 +118,11 @@
 <body>
 	<div id="wrap">
 		<div id="sideBar">
-			<a class="menus" onclick="chkCol(this);" href="./myInfo.jsp?" target="content">내 정보</a>
-			<a class="menus" onclick="chkCol(this);" href="./policyInfo.jsp?" target="content">정책 관리</a>
+			<a class="menus" onclick="chkCol(this);" href="./mainPage/myInfo.jsp" target="content">내 정보</a>
+			<a class="menus" onclick="chkCol(this);" href="./mainPage/policyInfo.jsp" target="content">정책 관리</a>
 		</div>
 		<div id="contents">
-			<iframe name="content">
+			<iframe name="content" style="overflow:auto;">
 			</iframe>
 		</div>
 	</div>
