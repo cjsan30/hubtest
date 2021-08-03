@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +17,7 @@
 			color: #455a64;
 			font-family: "Open Sans", sans-serif;
 			background-attachment: fixed;
-			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.9) 0%);
+			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0.9) 0%);
 		}
 		.card .card-block {
 		    padding: 20px;
@@ -244,7 +248,7 @@
                                                 </label>
                                             </div>
                                             <div class="forgot-phone text-right f-right">
-                                                <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a>
+                                                <a href="forgot_Password.jsp" class="text-right f-w-600"> Forgot Password?</a>
                                             </div>
                                         </div>
                                     </div>
