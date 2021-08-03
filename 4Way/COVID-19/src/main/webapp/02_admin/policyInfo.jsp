@@ -4,17 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>정책 관리</title>
+
+<script src="../js/jquery-3.6.0.js"></script>
+
+<style>
+	body{
+		padding:5px 0px 0px 10px;
+		margin:0px;
+	}
+	#wrap{
+		clear:both;
+	}
+</style>
+
+<script>
+
+
+	
+</script>
+
 </head>
 <body>
 	<div id="wrap">
-		<div id="menus">
-			<span>우리지역 정책관리</span>
-			<span>개정안 등록</span>
-		</div>
-		<div id="contents">
 		
-		</div>
 	</div>
 </body>
 </html>
