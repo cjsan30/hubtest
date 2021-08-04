@@ -72,7 +72,7 @@
   border-style: solid;
 }
 .panel-header {
-  padding: 5px;
+  padding: 0px;
   position: relative;
 }
 .panel-title {
@@ -189,7 +189,7 @@
   font-size: 14px;
   font-weight: bold;
   color: #0E2D5F;
-  height: 20px;
+  height: 29px;
   line-height: 20px;
 }
 .panel-footer {
@@ -958,8 +958,6 @@
 .textbox-label {
   display: inline-block;
   width: 80px;
-  height: 30px;
-  line-height: 30px;
   vertical-align: middle;
   overflow: hidden;
   text-overflow: ellipsis;

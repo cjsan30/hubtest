@@ -22,4 +22,13 @@ COMMENT ON COLUMN POLICYS.MB_ID IS '회원 아이디';
 COMMENT ON COLUMN POLICYS.P_LINK IS '링크';
 
 INSERT INTO POLICYS (P_ID,P_SDATE,P_EDATE,P_LEVEL,P_PRIVATE,P_ENTER,P_REST,MB_ID,P_LINK)
-VALUES ('','','','','','','','','');
+VALUES ('P001','2021-08-02','2021-08-08','3','4명까지 모임 가능','집합금지','22시~다음날 5시까지 포장,배달만 허용','busan051','https://www.busan.go.kr/covid19/Prevention07.do');
+
+INSERT INTO POLICYS (P_ID,P_SDATE,P_EDATE,P_LEVEL,P_PRIVATE,P_ENTER,P_REST,MB_ID,P_LINK)
+VALUES ('P002','2021-08-02','2021-08-08','3','4명까지 모임 가능','집합금지','22시~다음날 5시까지 포장,배달만 허용','busan051','https://www.busan.go.kr/covid19/Prevention07.do');
+
+INSERT INTO POLICYS (P_ID,P_SDATE,P_EDATE,P_LEVEL,P_PRIVATE,P_ENTER,P_REST,MB_ID,P_LINK)
+VALUES ('P003','2021-08-08','2021-08-13','3','4명까지 모임 가능','집합금지','22시~다음날 5시까지 포장,배달만 허용','busan051','https://www.busan.go.kr/covid19/Prevention07.do');
+
+SELECT * FROM POLICYS;
+--COMMIT;

@@ -3,7 +3,11 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="oracle.jdbc.OracleTypes" %>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	String userId = (String)session.getAttribute("userId");
+	
+	userId = "busan051";
 
 	Connection con = null;
 	CallableStatement csmt = null;
@@ -12,27 +16,19 @@
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String userID = "FOURWAY";
 	String userPass = "1";
+
+	Class.forName("oracle.jdbc.driver.OracleDriver");
 	
-	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		
-		con = DriverManager.getConnection(url,userID,userPass);
-		
-		String strProcName = "{call PKG_POLICYS.PROC_MB_SEL(?,?)}";
-		csmt = con.prepareCall(strProcName);
-		csmt.setString(1, userId);
-		csmt.registerOutParameter(2, OracleTypes.CURSOR);
-		
-		rs = (ResultSet)csmt.getObject(2);
-		
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	con = DriverManager.getConnection(url,userID,userPass);
 	
+	String strProcName = "{call PKG_POLICYS.PROC_MB_SEL(?,?)}";
+	csmt = con.prepareCall(strProcName);
+	csmt.setString(1, userId);
+	csmt.registerOutParameter(2, OracleTypes.CURSOR);
+	csmt.execute();
+
+	rs = (ResultSet)csmt.getObject(2);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -48,24 +44,65 @@
 		margin:0px;
 	}
 	#wrap{
-		clear:both;
-		border:1px solid red;
+		height:100%;
 	}
 	#policys span{
 		display:block;
 		float:left;
-		border:1px solid blue;
+		height:29px;
+		text-align:center;
+		font-size:15px;
+		padding:3px 0px 0px 0px;
+		font-weight: bold;
+	}
+	.insShow{
+		position:absolute;
+		top:40%;
+		left:50%;
+		transform:translate(-50%,-50%);
+		width:40%;
+		background-color:#fff;
+	}
+	.insHide{
+		position:absolute;
+		top:40%;
+		left:50%;
+		transform:translate(-50%,-50%);
+		width:40%;
+		background-color:#fff;
+		visibility:hidden;
+	}
+	#insertForm span{
+		display:block;
+		float:left;
+		height:29px;
+		text-align:center;
+		font-size:15px;
+		padding:3px 0px 0px 0px;
+		font-weight: bold;
 	}
 	.row{
 		clear:both;
 	}
+	#dateFormat span{
+		padding:0px;
+	}
 </style>
 
 <script>
-
 	
+	var showIns = function(){
+		$("div[class='insHide']").prop("class","insShow");
+		
+	}
+	
+	var hideIns = function(){
+		$("div[class='insShow']").prop("class","insHide");
+		$("#insertForm input").val("");
+	}
 	
 </script>
+
 <link rel="stylesheet" type="text/css" href="/COVID-19/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="/COVID-19/css/icon.css">
 <link rel="stylesheet" type="text/css" href="/COVID-19/css/demo.css">
@@ -74,22 +111,113 @@
 <body>
 	<div id="wrap">
 		<div id="buttons">
-			<input type="text" /><input type="button" value="조회" />
-			<input type="button" value="수정" />
-			<input type="button" value="추가" />
-			<input type="button" value="삭제" />
+			<input type="button" value="추가" onclick="showIns();" />
 		</div>
 		<div id="policys">
-			<div class="easyui-accordion" style="width:100%;height:100%;">
-				<div title="<span style='width:30%;'>정책 발행일자</span><span>정책 종료일자</span><span>거리두기 단계</span>">
+			<div class="easyui-accordion" style="width:100%;" id="policyAccordion">
+				<div class="row" title="
+					<span style='width:29.8%;'>거리두기 단계</span>
+					<span style='width:0px;border:1px solid #95B8E7;'></span>
+					<span style='width:34%;'>정책 발행일자</span>
+					<span style='width:2%;'>~</span>
+					<span style='width:34%;'>정책 종료일자</span>
+				"></div>
+<%
+	while(rs.next()){
+		if(rs.getString("UPDYN").equals("Y")){
+%>
+				<div id="<%=rs.getString("P_ID") %>" class="row" title="
+					<span style='width:29.8%;'><%=rs.getString("P_LEVEL") %> 단계</span>
+					<span style='width:0px;border:1px solid #95B8E7;'></span>
+					<span style='width:34%;'><%=rs.getString("P_SDATE") %></span>
+					<span style='width:2%;'>~</span>
+					<span style='width:34%;'><%=rs.getString("P_EDATE") %></span>
+				">
+					<div class="row">
+						<span style='width:10%;text-align:left;padding-left:30px;'>사적모임</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_PRIVATE") %>" /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>유흥시설</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_ENTER") %>" /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>식당,카페</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_REST") %>" /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>관련링크</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_LINK") %>" /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<input type="button" value="삭제" style="float:right;" onclick="goDel('<%=rs.getString("P_ID") %>')">
+						<input type="button" value="수정" style="float:right;" onclick="goUpd('<%=rs.getString("P_ID") %>')">
+					</div>
 				</div>
-			</div>
-			<div class="easyui-accordion" style="width:100%;height:100%;">
-				<div title="<span>정책 발행일자</span><span>정책 종료일자</span><span>거리두기 단계</span>">
-					aaa
+<%
+		}
+		else{
+%>
+				<div class="row" title="
+					<span style='width:29.8%;'><%=rs.getString("P_LEVEL") %> 단계</span>
+					<span style='width:0px;border:1px solid #95B8E7;'></span>
+					<span style='width:34%;'><%=rs.getString("P_SDATE") %></span>
+					<span style='width:2%;'>~</span>
+					<span style='width:34%;'><%=rs.getString("P_EDATE") %></span>
+				">
+					<div class="row">
+						<span style='width:10%;text-align:left;padding-left:30px;'>사적모임</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_PRIVATE") %>" readonly /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>유흥시설</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_ENTER") %>" readonly /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>식당,카페</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_REST") %>" readonly /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<span style='width:10%;text-align:left;padding-left:30px;'>관련링크</span><span style='width:2%;'>:</span><span style='width:88%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="<%=rs.getString("P_LINK") %>" readonly /></span>
+					</div>
+					<div class="row" style="border:1px solid #95B8E7;">
+						<input type="button" value="삭제" style="float:right;" onclick="goDel('<%=rs.getString("P_ID") %>')">
+					</div>
 				</div>
+<%
+		}
+	}
+%>
 			</div>
 		</div>
 	</div>
+	
+	<div style="height:316px;border:2px solid #95B8E7;" class="insHide">
+		<div class="row">
+			<input type="button" value="등록" style="float:left;" onclick="goIns()">
+			<input type="button" value="X" style="float:right;" onclick="hideIns()">
+		</div>
+		<form id="insertForm" action="./policyCRUD/insertPolicy.jsp" method="post">
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>거리두기 단계</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;height:108px;border-width:2px 0px 0px 0px;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>정책 적용기간</span><span style='width:2%;'>:</span>
+				<span class="easyui-panel" style="width:68%;padding-left:15px;border:none;height:100%;" id="dateFormat">
+					<input class="easyui-datebox" label="정책 발행일자:" labelPosition="top" style="width:90%;">
+					<input class="easyui-datebox" label="정책 종료일자:" labelPosition="top" style="width:90%;">
+				</span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>사적모임</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>사적모임</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>유흥시설</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>식당,카페</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+			<div class="row" style="border:1px solid #95B8E7;">
+				<span style='width:30%;text-align:left;padding-left:5%;'>관련링크</span><span style='width:2%;'>:</span><span style='width:68%;padding:0px;'><input type="text" style="padding-left:15px;width:100%;height:27px;border:none;margin-top:1px;" value="" /></span>
+			</div>
+		</form>
+	</div>
+	
 </body>
 </html>
