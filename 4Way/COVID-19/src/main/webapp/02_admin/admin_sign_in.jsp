@@ -16,13 +16,13 @@
 			color: #455a64;
 			font-family: "Open Sans", sans-serif;
 			background-attachment: fixed;
-			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0.9) 0%);
+			background-image: linear-gradient(rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.9) 0%);
 		}
 		.card .card-block {
 		    padding: 20px;
 		}
 		.login-block {
-			margin: 15% auto;
+			margin: 11% auto;
 		}
 		.card {
 		    position: relative;
@@ -258,7 +258,7 @@
                                                 </label>
                                             </div>
                                             <div class="forgot-phone text-right f-right">
-                                                <a href="forgot_Password.jsp" class="text-right f-w-600"> Forgot Password?</a>
+                                                <a href="./login/forgot_Password.jsp" class="text-right f-w-600"> Forgot Password?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -281,20 +281,5 @@
         </div>
         <!-- end of container-fluid -->
     </section>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-
-<!-- Warning Section Ends -->
-<!-- Required Jquery -->
-<script type="text/javascript" src="assets/js/jquery/jquery.min.js "></script>
-<script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>
-<script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
-<!-- waves js -->
-<script src="assets/pages/waves/js/waves.min.js"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script type="text/javascript" src="assets/js/common-pages.js"></script>
-
 </body>
 </html>

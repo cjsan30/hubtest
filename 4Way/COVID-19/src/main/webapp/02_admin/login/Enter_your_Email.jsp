@@ -22,7 +22,7 @@
 		    padding: 20px;
 		}
 		.login-block {
-			margin: 18% auto;
+			margin: 15% auto;
 		}
 		.card {
 		    position: relative;
@@ -234,7 +234,8 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Enter Your E-mail</h3>
+                                            <h3 class="text-center" style="margin-bottom:10px;">Enter Your E-mail</h3>
+                                            <h4 class="text-center" style="margin-top:0px;">&nbsp;비밀번호 잃어버렸을 때를 대비해서 이메일을 수집합니다.</h4>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
@@ -277,20 +278,5 @@
         </div>
         <!-- end of container-fluid -->
     </section>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-
-<!-- Warning Section Ends -->
-<!-- Required Jquery -->
-<script type="text/javascript" src="assets/js/jquery/jquery.min.js "></script>
-<script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>
-<script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
-<!-- waves js -->
-<script src="assets/pages/waves/js/waves.min.js"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script type="text/javascript" src="assets/js/common-pages.js"></script>
-
 </body>
 </html>

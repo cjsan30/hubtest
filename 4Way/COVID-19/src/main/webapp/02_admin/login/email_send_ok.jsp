@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String strResult = request.getParameter("result");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Forgot Password</title>
-	  <style>
+<title>New Password</title>
+<style>
 	  	body {
 			background-color: #566270;
 			font-size: 0.875em;
@@ -22,7 +19,7 @@
 		    padding: 20px;
 		}
 		.login-block {
-			margin: 15% auto;
+			margin: 18% auto;
 		}
 		.card {
 		    position: relative;
@@ -196,36 +193,19 @@
 			font-size: 15px;
 			line-height: 23px;
 		} 
-		h3 {
-			font-size: 28px;
+		h4 {
+			font-size: 20px;
 		}
 	  </style>
-      <script>
-	   
-	    function findPW(){
-	    	
-	    	document.getElementById("findPWForm").submit();
-	    }
-	    
-		function chkLogin(result){
-			
-			//alert(result);
-			if(result == 'N'){
-				
-				alert("아이디 또는 패스워드가 일치하지 않습니다.");
-			}
-		}
-		
-      </script>
 </head>
-<body onload="chkLogin('<%=strResult%>');">
-    <section class="login-block">
+<body>
+ <section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
-                        <form id="findPWForm" class="md-float-material form-material" action="./find_password.jsp" method="post">
+                        <form id="loginForm" class="md-float-material form-material" action="./login/sign_in_ok.jsp" method="post">
                             <div class="text-center">
                                 <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
                             </div>
@@ -233,39 +213,16 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Forgot Password</h3>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="identity" class="form-control" placeholder="Id">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"></label>
-                                    </div>
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control" placeholder="E-mail">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"></label>
-                                    </div>
-                                    <div class="row m-t-25 text-left">
-                                        <div class="col-12">
-                                            <div class="checkbox-fade fade-in-primary d-">
-                                                <label>
-                                                    <!-- <input type="checkbox" value=""> -->
-                                                    <!-- checkbox 테두리 -->
-                                                    <!-- <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span> -->
-                                                    <!-- <span class="text-inverse">Remember me</span> -->
-                                                </label>
-                                            </div>
-                                            <div class="forgot-phone text-right f-right">
-                                                <!-- <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a> -->
-                                            </div>
+                                            <h4 class="text-center">요청하신 이메일로 새 비밀번호를 발송했습니다.</h4>
                                         </div>
                                     </div>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" onclick="findPW();">
-                                            	Find Password
+                                            <a href="../admin_sign_in.jsp">
+                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" onclick="signIn();">
+                                            	로그인 페이지로
                                             </button>
+                                            </a>
                                         </div>
                                     </div>
                                     <hr/>
