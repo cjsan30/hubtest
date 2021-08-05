@@ -4,7 +4,8 @@
 <%@ page import="oracle.jdbc.OracleTypes" %>
 <%
 
-	String strUserPW = request.getParameter("password");
+	String strUserId = request.getParameter("identity");
+	String strUserNewPW = request.getParameter("newPW");
 
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -14,18 +15,12 @@
 		
 		CallableStatement csmt = con.prepareCall(strProcName);
 
-		csmt.setString(1, strUserPW);
-		csmt.registerOutParameter(2, OracleTypes.CURSOR);
+		csmt.setString(1, strUserId);
+		csmt.setString(2, strUserNewPW);
 		
 		csmt.execute();
 		
-		ResultSet rs = (ResultSet)csmt.getObject(2);
-		
-		rs.next();
-		
-		String PW_YN = rs.getString("PW_YN");
-		
-		response.sendRedirect("./myInfo.jsp?PW_YN=" + PW_YN);
+		response.sendRedirect("./myInfo.jsp");
 		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block

@@ -247,12 +247,48 @@
 		var userNewPW = $("#newPW").val();
 		var userChkNewPW = $("#chkNewPW").val();
 		
+		//var passwordRules = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+		//alert(passwordRules.test(userNewPW));
+		var checkNum = userNewPW.search(/[0-9]/g); // 숫자사용
+		var checkEng = userNewPW.search(/[a-z]/ig); // 영문사용
+
+		  if(checkNum <0 || checkEng <0){
+		    
+			  alert("숫자와 영문자를 조합하여야 합니다.");
+		  }else if(userNewPW.length != 9){
+			  
+				alert("새 비밀번호는 9자리여야 합니다.");
+		  }else {	
+			  
+			  if(userNewPW != userChkNewPW){
+					
+					alert("새 비밀번호와 새 비밀번호 확인 값은 같아야 합니다.");
+					
+				}else{
+				
+					if($(".result").val() == 'Y'){
+						
+						$("#myInfoForm").attr("action", "./change_password.jsp");
+						$("#myInfoForm").submit();
+						$(".result").val("N");
+						$("#myInfoForm").attr("action", "./check_password.jsp");
+						alert("비밀변호 변경 완료");
+						
+					}else{
+						
+						alert("현재 비밀번호 확인을 해주세요.");
+					}
+				}
+				//chksmallLetter(userNewPW, userChkNewPW);
+		 }
+	
+		/*
 		if(userNewPW.length != 9){
 			alert("새 비밀번호는 9자리여야 합니다.");
 		}else{	
-			chksmallLetter(userNewPW, userChkNewPW);
+			//chksmallLetter(userNewPW, userChkNewPW);
 		}
-		
+		*/
 	}
 	/*
 	function chksmallLetter(userNewPW, userChkNewPW){
@@ -352,7 +388,10 @@
 		}else if(result == 'Y'){
 			
 			$(".result").val(result);
-			$(".password").val("999999999");
+			$("#PWChkBtn").html("인증완료");
+			$("#PWChkBtn").css("background-color", "#007bff");
+			$("#PWChkBtn").css("color", "#fff");
+			$("#PWChkBtn").prop("disabled", true);
 			alert("패스워드 확인 완료.");
 		}
 	}
@@ -395,13 +434,13 @@
                                     </div>
                                     <br/>
                                     <div class="form-group form-primary">
-                                    	<span>비밀번호&nbsp;&nbsp;&#58;&nbsp;&nbsp;</span>
+                                    	<span>비밀번호 변경&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </div>
                                     <div class="form-group form-primary" style="clear:both">
-                                        <input type="password" name="password" class="form-password" value="" />
+                                        <input type="password" name="password" class="form-password" value="" placeholder="현재 비밀번호" />
                                         <span class="form-bar"></span>
                                         <label class="float-label"></label>
-                                        <button type="button" class="btn" onclick="chkPW();">
+                                        <button type="button" id="PWChkBtn" class="btn" onclick="chkPW();">
                                             	비밀번호 확인
                                         </button>
                                         <input type="hidden" value="N" class="result"/>

@@ -204,9 +204,11 @@
 	    	
 	    	var userEmail = document.getElementById("email").value;
 	    	
-	    	var validEmail = userEmail.indexOf("@", 0);	    	
-	    	
-	    	if(validEmail == -1){
+	    	//var validEmail = userEmail.indexOf("@", 0);	    	
+	    	var passwordRules = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
+	    	var result = passwordRules.test(userEmail);
+
+	    	if(!result){ //validEmail == -1
 	    		
 	    		alert("유효한 이메일을 입력해주세요.");
 	    		
