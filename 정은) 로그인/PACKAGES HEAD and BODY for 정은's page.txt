@@ -1,0 +1,238 @@
+-- PACKAGES HEAD for 정은's page 
+-- sign in page, send email page, find password page, user information page
+
+create or replace NONEDITIONABLE PACKAGE PKG_LOGIN AS 
+
+  -- 로그인 아이디/비밀번호 비교 후 'Y' OR 'N' RETURN
+  PROCEDURE PROC_LOGIN
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_PW           IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  );
+ 
+ -- 이메일 입력
+  PROCEDURE PROC_INS_EMAIL
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_EMAIL        IN      VARCHAR2
+  );
+  
+  -- 비밀번호 찾기
+  PROCEDURE PROC_FIND_PW
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_EMAIL        IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  );
+  
+  -- 회원 정보 조회
+  PROCEDURE PROC_VIEW_MYIFO
+  (
+    IN_USERID       IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  );
+  
+  -- 비밀번호 확인
+  PROCEDURE PROC_CHK_PW
+  (
+    IN_USERPW       IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  );
+  
+  -- 비밀번호 변경
+  PROCEDURE PROC_UP_PW
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_USERPW       IN      VARCHAR2
+  );
+  
+END PKG_LOGIN;
+
+
+
+
+
+
+
+
+
+
+-- PACKAGES BODY for 정은's page 
+-- sign in page, send email page, find password page, user information page
+
+create or replace NONEDITIONABLE PACKAGE BODY PKG_LOGIN AS
+
+  -- 로그인 아이디/비밀번호 비교 후 'Y' OR 'N' RETURN
+  PROCEDURE PROC_LOGIN(
+    
+    IN_USERID       IN      VARCHAR2,
+    IN_PW           IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  )
+  AS
+  
+    V_LOGIN_YN     CHAR(1);
+    V_EMAIL_YN     CHAR(1);
+  
+  BEGIN
+  
+    SELECT DECODE(MAX(MB_ID), NULL, 'N', 'Y') 
+    INTO V_LOGIN_YN
+    FROM MEMBERS
+    WHERE MB_ID = IN_USERID
+        AND MB_PASS = IN_PW
+    ;
+
+    IF V_LOGIN_YN = 'Y' THEN
+        
+        SELECT DECODE(MB_EMAIL, NULL, 'Y', 'N') 
+        INTO V_EMAIL_YN
+        FROM MEMBERS
+        WHERE MB_ID = IN_USERID
+            AND MB_PASS = IN_PW
+        ;
+        
+    END IF
+    ;
+   
+    OPEN O_CUR FOR
+    SELECT V_LOGIN_YN AS LOGIN_YN, V_EMAIL_YN AS EMAIL_YN
+    FROM DUAL
+    ;
+    
+  END PROC_LOGIN
+  ;
+  
+  -- 이메일 입력
+  PROCEDURE PROC_INS_EMAIL
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_EMAIL        IN      VARCHAR2
+  )
+  AS
+  
+  BEGIN
+    
+    UPDATE MEMBERS 
+    SET MB_EMAIL = IN_EMAIL 
+    WHERE MB_ID = IN_USERID
+    ;
+  
+  END PROC_INS_EMAIL
+  ;
+  
+  -- 비밀번호 찾기
+  PROCEDURE PROC_FIND_PW
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_EMAIL        IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  )
+  AS
+  
+    V_YN            CHAR(1);
+    V_NEWPW         CHAR(9);
+  
+  BEGIN
+  
+    SELECT DECODE(MAX(MB_PASS), NULL, 'N', 'Y')
+    INTO V_YN
+    FROM MEMBERS
+    WHERE MB_ID = IN_USERID
+        AND MB_EMAIL = IN_EMAIL
+    ;
+    
+    IF V_YN = 'Y' THEN
+        
+        SELECT TO_CHAR(DBMS_RANDOM.STRING('L', 3)) || TO_CHAR(ROUND(DBMS_RANDOM.VALUE(1,9)))
+                || TO_CHAR(DBMS_RANDOM.STRING('L', 2)) || TO_CHAR(ROUND(DBMS_RANDOM.VALUE(1,9)))
+                || TO_CHAR(DBMS_RANDOM.STRING('L', 2))
+        INTO V_NEWPW
+        FROM DUAL
+        ;
+        
+        UPDATE MEMBERS SET MB_PASS = V_NEWPW
+        WHERE MB_ID = IN_USERID
+        ;
+    
+    END IF
+    ;
+    
+    OPEN O_CUR FOR
+    SELECT V_YN AS YN, V_NEWPW AS NEWPW
+    FROM DUAL
+    ;
+    
+  END PROC_FIND_PW
+  ;
+  
+  -- 회원 정보 조회
+  PROCEDURE PROC_VIEW_MYIFO
+  (
+    IN_USERID       IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  )
+  AS
+  
+  BEGIN
+  
+    OPEN O_CUR FOR
+    SELECT MB_ID, MB_EMAIL, MB_REGION
+    FROM MEMBERS
+    WHERE MB_ID = IN_USERID
+    ;
+    
+   END PROC_VIEW_MYIFO
+   ;
+   
+   -- 비밀번호 확인
+   PROCEDURE PROC_CHK_PW
+  (
+    IN_USERPW       IN      VARCHAR2,
+    O_CUR           OUT     SYS_REFCURSOR
+  )
+  AS
+  
+    V_PW_YN         CHAR(1);
+  
+  BEGIN
+  
+    SELECT DECODE(MAX(MB_ID), NULL, 'N', 'Y') 
+    INTO V_PW_YN
+    FROM MEMBERS
+    WHERE MB_PASS = IN_USERPW
+    ;
+    
+    OPEN O_CUR FOR
+    SELECT V_PW_YN AS PW_YN
+    FROM DUAL
+    ;
+    
+  END PROC_CHK_PW
+  ;
+  
+  -- 비밀번호 변경
+  PROCEDURE PROC_UP_PW
+  (
+    IN_USERID       IN      VARCHAR2,
+    IN_USERPW       IN      VARCHAR2
+  )
+  AS
+  
+  BEGIN
+  
+    UPDATE MEMBERS 
+    SET MB_PASS = IN_USERPW
+    WHERE MB_ID = IN_USERID
+    ;
+    
+  END PROC_UP_PW
+  ;
+  
+END PKG_LOGIN;
+
+
+
+
+
