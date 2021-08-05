@@ -7,7 +7,7 @@
 
 	String userId = (String)session.getAttribute("userId");
 	
-	userId = "busan051";
+	//userId = "busan051";
 
 	Connection con = null;
 	CallableStatement csmt = null;

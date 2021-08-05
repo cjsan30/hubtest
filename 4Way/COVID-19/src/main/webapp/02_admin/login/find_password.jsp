@@ -32,6 +32,7 @@
 		
 		if(YN.equals("Y")){
 			
+			// ===================== 새 비밀번호 전송 ==========================
 			String host = "smtp.naver.com";
 			//final String user = "chlwjddms0226"; //발신자의 이메일 아이디를 입력 
 			final String user = "smart_98"; //발신자의 이메일 아이디를 입력
@@ -75,8 +76,11 @@
 			}
 			
 	        response.sendRedirect("./email_send_ok.jsp");
-	        //https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4Po2eimozjWSm0RcN6EO21WmodxcHukbvP6w_j726opoRf20Yrq8eOVu1NMhCgrrhhAPz3AHMwrjJ1nbE0xa4-yZwu34w
+	        // 보안 수준이 낮은 앱에 대한 액세스가 허용됨
+	        // https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4Po2eimozjWSm0RcN6EO21WmodxcHukbvP6w_j726opoRf20Yrq8eOVu1NMhCgrrhhAPz3AHMwrjJ1nbE0xa4-yZwu34w
 			
+	        // ===================== 새 비밀번호 전송 ==========================
+	        
 		}else{
 			
 			response.sendRedirect("./forgot_Password.jsp?result=N");
