@@ -4,10 +4,15 @@
 	//session.setAttribute("userId", "busan051");
 %>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	String userId = (String)session.getAttribute("userId");
+	
 	if(userId == null){
-		response.sendRedirect("./admin_sign_in.jsp");
+		response.sendRedirect("/COVID-19/02_admin/admin_sign_in.jsp");
+		return;
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -39,7 +44,7 @@
 	#contents iframe{
 		width:100%;
 		height:920px;
-		border:1px solid #aaa;
+		border:1px solid #95B8E7;
 		border-radius:15px;
 	}
 	.menus{
@@ -50,9 +55,9 @@
 		font-size:20px;
 		text-align:center;
 		border-radius:15px;
-		border:1px solid #566270;
-		background-color:#eee;
-		color:#566270;
+		border:1px solid #95B8E7;
+		background-color:#E0ECFF;
+		color:#0E2D5F;
 	}
 	.menus:visited{
 		display:block;
@@ -62,9 +67,9 @@
 		font-size:20px;
 		text-align:center;
 		border-radius:15px;
-		border:1px solid #566270;
-		background-color:#eee;
-		color:#566270;
+		border:1px solid #95B8E7;
+		background-color:#E0ECFF;
+		color:#0E2D5F;
 	}
 	.menus:hover{
 		display:block;
@@ -74,9 +79,9 @@
 		font-size:20px;
 		text-align:center;
 		border-radius:15px;
-		border:1px solid #566270;
-		background-color:#ccc;
-		color:white;
+		border:1px solid #95B8E7;
+		background-color:#fff49d;
+		color:#0E2D5F;
 	}
 	.menus:active{
 		display:block;
@@ -86,9 +91,9 @@
 		font-size:20px;
 		text-align:center;
 		border-radius:15px;
-		border:1px solid #566270;
-		background-color:#aaa;
-		color:white;
+		border:1px solid #95B8E7;
+		background-color:#ffe48d;
+		color:#0E2D5F;
 	}
 	.inmenu{
 		display:block;
@@ -98,9 +103,9 @@
 		font-size:20px;
 		text-align:center;
 		border-radius:15px;
-		border:1px solid #566270;
-		background-color:#999;
-		color:white;
+		border:1px solid #95B8E7;
+		background-color:#ffe48d;
+		color:#0E2D5F;
 	}
 </style>
 
@@ -120,6 +125,7 @@
 		<div id="sideBar">
 			<a class="menus" onclick="chkCol(this);" href="./mainPage/myInfo.jsp" target="content">내 정보</a>
 			<a class="menus" onclick="chkCol(this);" href="./mainPage/policyInfo.jsp" target="content">정책 관리</a>
+			<a class="menus" onclick="chkCol(this);" href="./login/logout.jsp" >로그아웃</a>
 		</div>
 		<div id="contents">
 			<iframe name="content" style="overflow:auto;">

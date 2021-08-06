@@ -6,24 +6,24 @@ CREATE TABLE MEMBERS
     MB_REGION   VARCHAR2(10)        NOT NULL
 );
 
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeonggi031', null, 'aleoi9j4f', '∞Ê±‚');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gangwon033', null, '9idlv8dkx', '∞≠ø¯');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('incheon032', null, 'idkc0l32g', '¿Œ√µ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('seoul02', null, '03kdic20d', 'º≠øÔ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chungbuk043', null, '8cos0dc2i', '√Ê∫œ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('sejong044', null, '02cksle9v', 'ºº¡æ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daejeon042', null, 'codpslc4c', '¥Î¿¸');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongbuk054', null, '9odlexkc2', '∞Ê∫œ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chunnam041', null, '0cpd3kdcs', '√Ê≥≤');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonbuk063', null, '5lck95kxs', '¿¸∫œ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daegu053', null, '43olskci2', '¥Î±∏');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongnam055', null, 'esls0d4kc', '∞Ê≥≤');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('ulsan052', null, 'cpdels92l', 'øÔªÍ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gwangju062', null, 'xodlci20c', '±§¡÷');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonnam061', null, 'bubnjd03l', '¿¸≥≤');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('busan051', null, '4o3lk9fkc', '∫ŒªÍ');
-INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeju064', null, 'ckslop2oe', '¡¶¡÷');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeonggi031', null, 'aleoi9j4f', 'Í≤ΩÍ∏∞');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gangwon033', null, '9idlv8dkx', 'Í∞ïÏõê');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('incheon032', null, 'idkc0l32g', 'Ïù∏Ï≤ú');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('seoul02', null, '03kdic20d', 'ÏÑúÏö∏');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chungbuk043', null, '8cos0dc2i', 'Ï∂©Î∂Å');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('sejong044', null, '02cksle9v', 'ÏÑ∏Ï¢Ö');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daejeon042', null, 'codpslc4c', 'ÎåÄÏ†Ñ');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongbuk054', null, '9odlexkc2', 'Í≤ΩÎ∂Å');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('chunnam041', null, '0cpd3kdcs', 'Ï∂©ÎÇ®');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonbuk063', null, '5lck95kxs', 'Ï†ÑÎ∂Å');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('daegu053', null, '43olskci2', 'ÎåÄÍµ¨');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gyeongnam055', null, 'esls0d4kc', 'Í≤ΩÎÇ®');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('ulsan052', null, 'cpdels92l', 'Ïö∏ÏÇ∞');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('gwangju062', null, 'xodlci20c', 'Í¥ëÏ£º');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeonnam061', null, 'bubnjd03l', 'Ï†ÑÎÇ®');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('busan051', null, '4o3lk9fkc', 'Î∂ÄÏÇ∞');
+INSERT  INTO MEMBERS (MB_ID, MB_EMAIL, MB_PASS, MB_REGION) VALUES ('jeju064', null, 'ckslop2oe', 'Ï†úÏ£º');
 
-SELECT * FROM MEMBERS;
-
+--SELECT * FROM MEMBERS;
+--DROP TABLE MEMBERS;
 -- COMMIT;
