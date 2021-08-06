@@ -7,6 +7,11 @@
 	
 	String PW_YN = request.getParameter("PW_YN");
 	String strUserId = (String)session.getAttribute("userId");
+	if(strUserId == null){
+		response.sendRedirect("/COVID-19/02_admin/admin_sign_in.jsp");
+		return;
+	}
+	
 	
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
