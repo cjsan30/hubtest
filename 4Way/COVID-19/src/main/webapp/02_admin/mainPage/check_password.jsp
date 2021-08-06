@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="oracle.jdbc.OracleTypes" %>
+<%@ page import="java.io.PrintWriter" %>
 <%
 
 	String strUserPW = request.getParameter("password");
 
 	try {
+		 
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "covid19", "1");
 		
@@ -23,9 +25,16 @@
 		
 		rs.next();
 		
-		String PW_YN = rs.getString("PW_YN");
+		String strXML = "<?xml version='1.0'?>";
 		
-		response.sendRedirect("./myInfo.jsp?PW_YN=" + PW_YN);
+		strXML += "<PW_YN>" + rs.getString("PW_YN") + "</PW_YN>";
+		
+		response.setContentType("text/xml");
+		
+		PrintWriter writer = response.getWriter();
+    	writer.print(strXML);
+    	
+		//response.sendRedirect("./myInfo.jsp?PW_YN=" + PW_YN);
 		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block

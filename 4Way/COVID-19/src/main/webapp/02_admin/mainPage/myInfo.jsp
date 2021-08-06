@@ -5,7 +5,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String PW_YN = request.getParameter("PW_YN");
+	//String PW_YN = request.getParameter("PW_YN");
 	String strUserId = (String)session.getAttribute("userId");
 	
 	try {
@@ -241,7 +241,7 @@
 	
 	//var userNewPW = "";
 	//var userChkNewPW = "";
-
+	
 	function modify(){
 		
 		var userNewPW = $("#newPW").val();
@@ -266,12 +266,12 @@
 					
 				}else{
 				
-					if($(".result").val() == 'Y'){
+					if($("#result").val() == 'Y'){
 						
-						$("#myInfoForm").attr("action", "./change_password.jsp");
+						//$("#myInfoForm").attr("action", "./change_password.jsp");
 						$("#myInfoForm").submit();
-						$(".result").val("N");
-						$("#myInfoForm").attr("action", "./check_password.jsp");
+						$("#result").val("N");
+						//$("#myInfoForm").attr("action", "./check_password.jsp");
 						alert("비밀변호 변경 완료");
 						
 					}else{
@@ -279,94 +279,42 @@
 						alert("현재 비밀번호 확인을 해주세요.");
 					}
 				}
-				//chksmallLetter(userNewPW, userChkNewPW);
-		 }
+				
+			 }
+		}
 	
-		/*
-		if(userNewPW.length != 9){
-			alert("새 비밀번호는 9자리여야 합니다.");
-		}else{	
-			//chksmallLetter(userNewPW, userChkNewPW);
-		}
-		*/
-	}
-	/*
-	function chksmallLetter(userNewPW, userChkNewPW){
-		
-		var smallLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 
-				'h', 'i', 'j', 'k', 'l', 'm', 'n', 
-				'o', 'p', 'q', 'r', 's', 't', 'u', 
-				'v', 'w', 'x', 'y', 'z'];
-		
-		var realchk = 0;
-		
-		for(var i=0;i<smallLetter.length;i++){
-			
-			if(userNewPW.indexOf(smallLetter[i], 0) == -1)){
-				
-				realchk += 1;		
-			}
-		}
-		
-		if(realchk == 0){
-			
-			chkNum(userNewPW, userChkNewPW);
-			
-		}else{
-			
-			alert("비밀번호는 알파벳 소문자, 숫자를 포함해야 합니다.");
-		}
-	}
-	
-	function chkNum(userNewPW, userChkNewPW){
-		
-		var num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-		var realchk = 0;
-		
-		for(var i=0;i<num.length;i++){
-			
-			if(userNewPW.indexOf(num[i], 0) == -1)){
-				
-				realchk += 1;		
-			}
-		}
-		
-		if(realchk == 0){
-			chkSameNewPW(userNewPW, userChkNewPW);
-		}else{
-			
-			alert("비밀번호는 알파벳 소문자, 숫자를 포함해야 합니다.");
-		}
-	}
-	
-	function chkSameNewPW(userNewPW, userChkNewPW){
-		
-		if(userNewPW != userChkNewPW){
-			
-			alert("새 비밀번호와 새 비밀번호 확인 값이 다릅니다.");
-			
-		}else{
-		
-			if($(".result").val() == 'Y'){
-				
-				$("#myInfoForm").attr("action", "./change_password.jsp");
-				$("#myInfoForm").submit();
-				$(".result").val("N");
-				$("#myInfoForm").attr("action", "./check_password.jsp");
-				
-			}else{
-				
-				alert("현재 비밀번호 확인을 해주세요.");
-			}
-		}
-	}
-	*/
 	function chkPW(){
 		
-		$("#myInfoForm").submit();
+		//$("#myInfoForm").submit();
+		var userPW = $("#password").val();
 		
+		var ajaxObj = {
+				
+				type:"post", 
+				async:"true", 
+				url:"./check_password.jsp", 
+				data:"password=" + userPW,
+				dataType:"xml",  
+				success: function(data){
+					//alert($(data).find("PW_YN").text());
+					
+					$("#result").val($(data).find("PW_YN").text());
+					chkLogin();
+				},
+		  		error : function(xhr,status,error) {
+		      		alert("err")
+		  		},
+		  		complete:function(data,textStatus) {
+		  			
+		  			
+		  		}
+
+			 }
+		
+		$.ajax(ajaxObj);
 	}
 
+	
 	var showIns = function(){
 		$("div[class='insHide']").prop("class","insShow");
 		
@@ -378,8 +326,9 @@
 	}
 	
 	
-	function chkLogin(result){
+	function chkLogin(){
 		
+		var result = $("#result").val();
 		//alert(result);
 		if(result == 'N'){
 			
@@ -399,14 +348,14 @@
 </script>
 
 </head>
-<body onload="chkLogin('<%=PW_YN%>');">
+<body>
 	<section class="login-block">
         <!-- Container-fluid starts -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
-                        <form id="myInfoForm" class="md-float-material form-material" action="./check_password.jsp" method="post">
+                        <form id="myInfoForm" class="md-float-material form-material" action="./change_password.jsp" method="post">
                             <div class="text-center">
                                 <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
                             </div>
@@ -437,13 +386,13 @@
                                     	<span>비밀번호 변경&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </div>
                                     <div class="form-group form-primary" style="clear:both">
-                                        <input type="password" name="password" class="form-password" value="" placeholder="현재 비밀번호" />
+                                        <input type="password" name="password" id="password" class="form-password" value="" placeholder="현재 비밀번호" />
                                         <span class="form-bar"></span>
                                         <label class="float-label"></label>
                                         <button type="button" id="PWChkBtn" class="btn" onclick="chkPW();">
                                             	비밀번호 확인
                                         </button>
-                                        <input type="hidden" value="N" class="result"/>
+                                        <input type="hidden" value="N" id="result"/>
                                     </div>
                                     <div class="form-group form-primary">
                                         <input type="password" id="newPW" name="newPW" class="form-newPW" placeholder="새 비밀번호" value="" />
