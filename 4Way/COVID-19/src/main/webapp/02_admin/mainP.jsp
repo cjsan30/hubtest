@@ -117,6 +117,13 @@
 		
 	}
 	
+	$().ready(
+		function(){
+			$("a[href='./mainPage/myInfo.jsp']").click();
+			content.location.href = "./mainPage/myInfo.jsp";
+		}
+	);
+	
 </script>
 
 </head>
@@ -128,7 +135,7 @@
 			<a class="menus" onclick="chkCol(this);" href="./login/logout.jsp" >로그아웃</a>
 		</div>
 		<div id="contents">
-			<iframe name="content" style="overflow:auto;">
+			<iframe id="content" name="content" style="overflow:auto;">
 			</iframe>
 		</div>
 	</div>
