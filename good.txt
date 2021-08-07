@@ -101,3 +101,6 @@ Aug 2nd
 "각 페이지 title, 각 box main 이름, button 이름, id, password, e-mail 등 각 명 설정 재확인"
 "각 페이지 캡처본 로그인 파일에서 확인 가능"
 "각 페이지 파일 위치 재확인"
+
+Aug 7th
+"놀아땅"
